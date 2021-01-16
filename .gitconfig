@@ -1,0 +1,40 @@
+# This is Git's per-user configuration file.
+[user]
+  name = Meik Dachs
+  email = meik.dachs@gmail.com
+[push]
+  default = current
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  interactive = auto
+  ui = true
+  pager = true
+[core]
+	excludesfile = /Users/meik/.gitignore
+  editor = nvim
+[commit]
+  verbose = true
+[merge]
+  tool = nvimdiff
+[mergetool "nvimdiff"]
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[difftool]
+  prompt = false
+[alias]
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  l = !git --no-pager log --oneline --decorate --graph --max-count=30 --pretty=tformat:\"%C(yellow)%h\t%Cblue%ar\t%Cgreen%an%C(yellow)%d %Creset%s\"
+  lol = log --oneline
+  co = checkout
+  ci = commit
+  st = status
+  fp = push --force-with-lease
+  ane = --amend --no-edit
+  fix-upstream = !git branch --set-upstream-to=origin/$(git branch --show-current) $(git branch --show-current)
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
